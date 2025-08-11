@@ -1,0 +1,2055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luthfi Rafananda | Front-End Developer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    
+    :root {
+      --primary: #3b82f6;
+      --primary-dark: #2563eb;
+      --secondary: #1e293b;
+      --light: #f8fafc;
+      --dark: #0f172a;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+    
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    /* Parallax Effect */
+    .parallax {
+      transform-style: preserve-3d;
+      transition: transform 0.5s;
+    }
+    
+    /* Floating Animation */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+    
+    .floating {
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    /* Gradient Animation */
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    .animated-gradient {
+      background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+    }
+    
+    /* Blob Animation */
+    @keyframes blob {
+      0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+      50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+    }
+    
+    .blob {
+      animation: blob 8s ease-in-out infinite;
+    }
+    
+    /* Text Reveal Animation */
+    @keyframes textReveal {
+      from {
+        clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+      }
+      to {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      }
+    }
+    
+    .text-reveal {
+      animation: textReveal 1.5s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+    }
+    
+    /* Slide Animations */
+    @keyframes slideInFromTop {
+      from {
+        opacity: 0;
+        transform: translateY(-100px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes slideInFromBottom {
+      from {
+        opacity: 0;
+        transform: translateY(100px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes slideInFromLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-100px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    @keyframes slideInFromRight {
+      from {
+        opacity: 0;
+        transform: translateX(100px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    
+    @keyframes rotateIn {
+      from {
+        opacity: 0;
+        transform: rotate(-180deg) scale(0.5);
+      }
+      to {
+        opacity: 1;
+        transform: rotate(0) scale(1);
+      }
+    }
+    
+    /* Animation Classes */
+    .slide-in-top { animation: slideInFromTop 0.8s ease-out forwards; }
+    .slide-in-bottom { animation: slideInFromBottom 0.8s ease-out forwards; }
+    .slide-in-left { animation: slideInFromLeft 0.8s ease-out forwards; }
+    .slide-in-right { animation: slideInFromRight 0.8s ease-out forwards; }
+    .scale-in { animation: scaleIn 0.8s ease-out forwards; }
+    .rotate-in { animation: rotateIn 1s ease-out forwards; }
+    
+    /* Stagger Animation */
+    .stagger-1 { animation-delay: 0.1s; }
+    .stagger-2 { animation-delay: 0.2s; }
+    .stagger-3 { animation-delay: 0.3s; }
+    .stagger-4 { animation-delay: 0.4s; }
+    .stagger-5 { animation-delay: 0.5s; }
+    .stagger-6 { animation-delay: 0.6s; }
+    
+    /* Hover Effects */
+    .hover-lift {
+      transition: all 0.3s ease;
+    }
+    
+    .hover-lift:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+    
+    .hover-rotate {
+      transition: transform 0.3s ease;
+    }
+    
+    .hover-rotate:hover {
+      transform: rotate(5deg) scale(1.05);
+    }
+    
+    .hover-glow:hover {
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+    }
+    
+    /* Project Card Effects */
+    .project-card {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s;
+    }
+    
+    .project-card:hover::before {
+      left: 100%;
+    }
+    
+    .project-overlay {
+      position: absolute;
+      bottom: -100%;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+      padding: 20px;
+      transition: bottom 0.3s ease;
+    }
+    
+    .project-card:hover .project-overlay {
+      bottom: 0;
+    }
+    
+    /* Certificate Gallery */
+    .certificate-gallery {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    
+    .certificate-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .certificate-item:hover {
+      transform: scale(1.03);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+    
+    .certificate-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .certificate-item:hover img {
+      transform: scale(1.1);
+    }
+    
+    /* Image Gallery Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: rgba(0, 0, 0, 0.95);
+      animation: fadeIn 0.3s ease;
+    }
+    
+    .lightbox.active {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .lightbox-content {
+      max-width: 90%;
+      max-height: 90%;
+      animation: scaleIn 0.3s ease;
+      position: relative;
+    }
+    
+    .lightbox-content img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    
+    .lightbox-close {
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      color: white;
+      font-size: 30px;
+      cursor: pointer;
+      background: rgba(0, 0, 0, 0.5);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    /* Mobile Menu */
+    .mobile-menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 998;
+    }
+    
+    .mobile-menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 80%;
+      max-width: 320px;
+      height: 100%;
+      background: white;
+      z-index: 999;
+      transition: right 0.3s ease;
+      box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .mobile-menu.active {
+      right: 0;
+    }
+    
+    /* Smooth Scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(to bottom, #3b82f6, #8b5cf6);
+      border-radius: 5px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(to bottom, #2563eb, #7c3aed);
+    }
+    
+    /* Responsive Typography */
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.5rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1.125rem;
+      }
+    }
+    
+    /* Button Animations */
+    .btn-shine {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-shine::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transform: rotate(45deg) translateX(-100%);
+      transition: transform 0.6s;
+    }
+    
+    .btn-shine:hover::after {
+      transform: rotate(45deg) translateX(100%);
+    }
+    
+    /* Typing Effect */
+    .typing-text {
+      border-right: 3px solid #3b82f6;
+      animation: blink 1s step-end infinite;
+    }
+    
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Mouse Follow Cursor */
+    .cursor {
+      width: 20px;
+      height: 20px;
+      border: 1px solid #3b82f6;
+      border-radius: 50%;
+      position: absolute;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      transition: all 0.3s ease;
+      z-index: 9999;
+      mix-blend-mode: difference;
+    }
+
+    .cursor.hover {
+      transform: translate(-50%, -50%) scale(2.5);
+      border-width: 2px;
+    }
+
+    /* Progress Bars */
+    .progress-bar {
+      height: 8px;
+      background: #e5e7eb;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+      border-radius: 4px;
+      transform: translateX(-100%);
+      transition: transform 1s ease-out;
+    }
+
+    .progress-fill.animate {
+      transform: translateX(0);
+    }
+
+    /* Glitch Effect */
+    .glitch {
+      position: relative;
+      display: inline-block;
+    }
+
+    .glitch:before,
+    .glitch:after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+    }
+
+    .glitch:before {
+      animation: glitch-anim-1 0.3s ease-in-out;
+      color: #ff0040;
+      z-index: -1;
+    }
+
+    .glitch:after {
+      animation: glitch-anim-2 0.3s ease-in-out;
+      color: #00ff40;
+      z-index: -2;
+    }
+
+    @keyframes glitch-anim-1 {
+      0% { clip-path: polygon(0 20%, 100% 20%, 100% 21%, 0 21%); transform: translate(-2px, -1px); }
+      5% { clip-path: polygon(0 60%, 100% 60%, 100% 61%, 0 61%); transform: translate(-2px, -1px); }
+      10% { clip-path: polygon(0 43%, 100% 43%, 100% 44%, 0 44%); transform: translate(-2px, -1px); }
+      15% { clip-path: polygon(0 25%, 100% 25%, 100% 26%, 0 26%); transform: translate(-2px, -1px); }
+      20% { clip-path: polygon(0 58%, 100% 58%, 100% 59%, 0 59%); transform: translate(-2px, -1px); }
+      100% { clip-path: polygon(0 58%, 100% 58%, 100% 59%, 0 59%); transform: translate(-2px, -1px); }
+    }
+
+    @keyframes glitch-anim-2 {
+      0% { clip-path: polygon(0 61%, 100% 61%, 100% 62%, 0 62%); transform: translate(2px, 1px); }
+      5% { clip-path: polygon(0 33%, 100% 33%, 100% 34%, 0 34%); transform: translate(2px, 1px); }
+      10% { clip-path: polygon(0 76%, 100% 76%, 100% 77%, 0 77%); transform: translate(2px, 1px); }
+      15% { clip-path: polygon(0 85%, 100% 85%, 100% 86%, 0 86%); transform: translate(2px, 1px); }
+      20% { clip-path: polygon(0 45%, 100% 45%, 100% 46%, 0 46%); transform: translate(2px, 1px); }
+      100% { clip-path: polygon(0 45%, 100% 45%, 100% 46%, 0 46%); transform: translate(2px, 1px); }
+    }
+  </style>
+</head>
+<body class="bg-gray-50">
+  <!-- Custom Cursor -->
+  <div class="cursor hidden md:block" id="cursor"></div>
+
+
+
+  <!-- Navigation -->
+  <nav class="fixed w-full bg-white/90 backdrop-blur-md shadow-sm z-50 transition-all duration-300" id="navbar">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <!-- Logo -->
+        <div class="flex-shrink-0">
+          <a href="#home" class="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent cursor-hover">
+            Luthfi R.
+          </a>
+        </div>
+
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="#home" class="nav-link cursor-hover text-gray-700 hover:text-blue-500 transition-colors duration-300">Home</a>
+          <a href="#about" class="nav-link cursor-hover text-gray-700 hover:text-blue-500 transition-colors duration-300">About</a>
+          <a href="#projects" class="nav-link cursor-hover text-gray-700 hover:text-blue-500 transition-colors duration-300">Projects</a>
+          <a href="#certificates" class="nav-link cursor-hover text-gray-700 hover:text-blue-500 transition-colors duration-300">Certificates</a>
+          <a href="#contact" class="nav-link cursor-hover text-gray-700 hover:text-blue-500 transition-colors duration-300">Contact</a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <div class="md:hidden">
+          <button id="mobile-menu-btn" class="text-gray-700 hover:text-blue-500 focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
+  
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <div class="p-6">
+      <div class="flex justify-between items-center mb-8">
+        <h2 class="text-2xl font-bold text-gray-800">Menu</h2>
+        <button id="close-menu-btn" class="text-gray-700 hover:text-blue-500">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <nav class="space-y-4">
+        <a href="#home" class="block py-2 text-lg text-gray-700 hover:text-blue-500 transition-colors mobile-nav-link">Home</a>
+        <a href="#about" class="block py-2 text-lg text-gray-700 hover:text-blue-500 transition-colors mobile-nav-link">About</a>
+        <a href="#projects" class="block py-2 text-lg text-gray-700 hover:text-blue-500 transition-colors mobile-nav-link">Projects</a>
+        <a href="#certificates" class="block py-2 text-lg text-gray-700 hover:text-blue-500 transition-colors mobile-nav-link">Certificates</a>
+        <a href="#contact" class="block py-2 text-lg text-gray-700 hover:text-blue-500 transition-colors mobile-nav-link">Contact</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden animated-gradient">
+    <!-- Animated Background Elements -->
+    <div class="absolute inset-0">
+      <div class="absolute top-20 left-10 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 blob"></div>
+      <div class="absolute top-40 right-10 w-72 h-72 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 blob" style="animation-delay: 2s;"></div>
+      <div class="absolute -bottom-8 left-20 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 blob" style="animation-delay: 4s;"></div>
+    </div>
+
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="text-center">
+        <div class="mb-8 floating">
+          <div class="w-32 h-32 sm:w-40 sm:h-40 mx-auto rounded-full overflow-hidden border-4 border-white shadow-2xl rotate-in">
+            <!-- TEMPAT FOTO PROFIL - Ganti URL ini dengan foto Anda -->
+            <img src="" alt="Luthfi Rafananda" class="w-full h-full object-cover cursor-hover">
+          </div>
+        </div>
+        
+        <h1 class="hero-title text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4 slide-in-top">
+          Hi, I'm <span class="text-reveal glitch cursor-hover" data-text="Luthfi Rafananda">Luthfi Rafananda</span>
+        </h1>
+        
+        <div class="hero-subtitle text-xl sm:text-2xl text-white/90 mb-8 slide-in-bottom">
+          <span class="typing-text" id="typing-text">Front-End Developer</span>
+        </div>
+        
+        <div class="flex flex-col sm:flex-row gap-4 justify-center slide-in-bottom stagger-3">
+          <a href="#projects" class="btn-shine cursor-hover inline-block bg-white text-blue-600 font-semibold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+            View My Projects
+          </a>
+          <a href="#contact" class="cursor-hover inline-block bg-transparent border-2 border-white text-white font-semibold py-3 px-8 rounded-full hover:bg-white hover:text-blue-600 transition-all duration-300">
+            Contact Me
+          </a>
+        </div>
+        
+        <!-- Social Media Links -->
+        <div class="flex justify-center gap-4 mt-8 slide-in-bottom stagger-4">
+          <a href="https://github.com/luthfirafananda" target="_blank" class="cursor-hover w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white hover:text-blue-600 transition-all duration-300 hover-rotate">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://linkedin.com/in/luthfirafananda" target="_blank" class="cursor-hover w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white hover:text-blue-600 transition-all duration-300 hover-rotate">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="https://instagram.com/luthfirafananda" target="_blank" class="cursor-hover w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white hover:text-blue-600 transition-all duration-300 hover-rotate">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://twitter.com/luthfirafananda" target="_blank" class="cursor-hover w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white hover:text-blue-600 transition-all duration-300 hover-rotate">
+            <i class="fab fa-twitter"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll Down Indicator -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white">
+      <div class="floating">
+        <i class="fas fa-chevron-down text-2xl cursor-hover"></i>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-20 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl sm:text-4xl font-bold text-center mb-16 slide-in-top">
+        About <span class="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">Me</span>
+      </h2>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="slide-in-left">
+          <h3 class="text-2xl font-bold mb-4 text-gray-800">Front-End Developer & UI Enthusiast</h3>
+          <p class="text-gray-600 mb-6 leading-relaxed">
+            I'm a passionate front-end developer with a keen eye for design and a love for creating seamless user experiences. 
+            With expertise in modern web technologies, I transform ideas into interactive, responsive, and visually appealing web applications.
+          </p>
+          <p class="text-gray-600 mb-8 leading-relaxed">
+            My journey in web development has equipped me with a strong foundation in HTML5, CSS3, JavaScript, and popular frameworks 
+            like React.js. I'm constantly learning and adapting to new technologies to deliver cutting-edge solutions.
+          </p>
+
+          <!-- Skills with Progress Bars -->
+          <div class="mb-8">
+            <h4 class="text-xl font-semibold mb-4 text-gray-800">Technologies</h4>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium hover-lift cursor-hover">HTML5</span>
+              <span class="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium hover-lift cursor-hover">CSS3</span>
+              <span class="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium hover-lift cursor-hover">JavaScript</span>
+              <span class="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium hover-lift cursor-hover">React.js</span>
+              <span class="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium hover-lift cursor-hover">Tailwind CSS</span>
+              <span class="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium hover-lift cursor-hover">Git</span>
+              <span class="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium hover-lift cursor-hover">Responsive Design</span>
+              <span class="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium hover-lift cursor-hover">UI/UX</span>
+            </div>
+          </div>
+
+          <a href="/cv/luthfi-rafananda-cv.pdf" download class="cursor-hover inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold py-3 px-6 rounded-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+            <i class="fas fa-download"></i>
+            Download CV
+          </a>
+        </div>
+
+        <div class="slide-in-right">
+          <!-- Stats Cards -->
+          <div class="grid grid-cols-2 gap-4 mb-8">
+            <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl hover-lift cursor-hover">
+              <div class="text-3xl font-bold text-blue-600 mb-2 counter" data-target="50">0</div>
+              <div class="text-gray-600">Projects Completed</div>
+            </div>
+            <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-xl hover-lift cursor-hover">
+              <div class="text-3xl font-bold text-purple-600 mb-2 counter" data-target="30">0</div>
+              <div class="text-gray-600">Happy Clients</div>
+            </div>
+            <div class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl hover-lift cursor-hover">
+              <div class="text-3xl font-bold text-green-600 mb-2 counter" data-target="3">0</div>
+              <div class="text-gray-600">Years Experience</div>
+            </div>
+            <div class="bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-xl hover-lift cursor-hover">
+              <div class="text-3xl font-bold text-orange-600 mb-2 counter" data-target="10">0</div>
+              <div class="text-gray-600">Certifications</div>
+            </div>
+          </div>
+
+          <!-- Experience Timeline -->
+          <div class="bg-gray-50 p-6 rounded-xl">
+            <h4 class="text-xl font-semibold mb-4 text-gray-800">Experience</h4>
+            <div class="space-y-4">
+              <div class="border-l-4 border-blue-500 pl-4">
+                <div class="text-sm text-gray-500">2023 - Present</div>
+                <div class="font-semibold text-gray-800">Front-End Developer</div>
+                <div class="text-gray-600">Freelance</div>
+              </div>
+              <div class="border-l-4 border-purple-500 pl-4">
+                <div class="text-sm text-gray-500">2022 - 2023</div>
+                <div class="font-semibold text-gray-800">Junior Web Developer</div>
+                <div class="text-gray-600">Tech Startup</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl sm:text-4xl font-bold text-center mb-4 slide-in-top">
+        My <span class="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">Projects</span>
+      </h2>
+      <p class="text-center text-gray-600 mb-16 max-w-2xl mx-auto slide-in-top stagger-2">
+        Here are some of my recent projects. Each one is crafted with attention to detail and modern best practices.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Project 1 -->
+        <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden hover-lift scale-in stagger-1">
+          <div class="relative h-48 overflow-hidden cursor-hover">
+            <!-- TEMPAT SCREENSHOT PROJECT 1 - Ganti dengan screenshot project Anda -->
+            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop&auto=format&q=80" alt="E-Commerce Platform" class="w-full h-full object-cover">
+            <div class="project-overlay">
+              <div class="text-white">
+                <h3 class="text-xl font-bold mb-2">E-Commerce Platform</h3>
+                <p class="text-sm mb-3">Modern online shopping platform with cart functionality</p>
+                <div class="flex gap-2 flex-wrap mb-4">
+                  <span class="text-xs bg-white/20 backdrop-blur-sm px-2 py-1 rounded">React</span>
+                  <span class="text-xs bg-white/20 backdrop-blur-sm px-2 py-1 rounded">Tailwind</span>
+                  <span class="text-xs bg-white/20 backdrop-blur-sm px-2 py-1 rounded">API</span>
+                </div>
+                <div class="flex gap-2">
+                  <a href="#" class="px-3 py-1 bg-white/20 backdrop-blur-sm rounded text-xs hover:bg-white/30 transition-colors">
+                    <i class="fas fa-eye"></i> Demo
+                  </a>
+                  <a href="#" class="px-3 py-1 bg-white/20 backdrop-blur-sm rounded text-xs hover:bg-white/30 transition-colors">
+                    <i class="fab fa-github"></i> Code
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-gray-800 mb-2">E-Commerce Platform</h3>
+            <p class="text-gray-600 mb-4">
+              Full-featured online shopping platform with cart, payment integration, and admin dashboard.
+            </p>
+            <div class="flex gap-4">
+              <a href="#" class="text-blue-500 hover:text-blue-600 font-medium flex items-center gap-1 cursor-hover">
+                <i class="fas fa-eye"></i> Demo
+              </a>
+              <a href="#" class="text-gray-500 hover:text-gray-600 font-medium flex items-center gap-1 cursor-hover">
+                <i class="fab fa-github"></i> Code
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden hover-lift scale-in stagger-2">
+          <div class="relative h-48 overflow-hidden cursor-hover">
+            <!-- TEMPAT SCREENSHOT PROJECT 2 -->
+            <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=600&h=400&fit=crop&auto=format&q=80" alt="Task Management App" class="w-full h-full object-cover">
+            <div class="project-overlay">
+              <div class="text-white">
+                <h3 class="text-xl font-bold mb-2">Task Management App</h3>
+                <p class="text-sm mb-3">Productivity app with drag & drop functionality</p>
+                <div class="flex gap-2 flex-wrap mb-4">
+                  <span class="text-xs bg-white/20 backdrop-blur-sm px-2 py-1 rounded">Vue.js</span>
+                  <span class="text-xs bg-white/20 backdrop-blur-sm px-2 py-1 rounded">Node.js</span>
+                  <span class="text-xs bg-white/20 backdrop-blur-sm px-2 py-1 rounded">MongoDB</span>
+                </div>
+                <div class="flex gap-2">
+                  <a href="#" class="px-3 py-1 bg-white/20 backdrop-blur-sm rounded text-xs hover:bg-white/30 transition-colors">
+                    <i class="fas fa-eye"></i> Demo
+                  </a>
+                  <a href="#" class="px-3 py-1 bg-white/20 backdrop-blur-sm rounded text-xs hover:bg-white/30 transition-colors">
+                    <i class="fab fa-github"></i> Code
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-gray-800 mb-2">Task Management App</h3>
+            <p class="text-gray-600 mb-4">
+              Intuitive task manager with drag & drop, team collaboration, and progress tracking features.
+            </p>
+            <div class="flex gap-4">
+              <a href="#" class="text-blue-500 hover:text-blue-600 font-medium flex items-center gap-1 cursor-hover">
+                <i class="fas fa-eye"></i> Demo
+              </a>
+              <a href="#" class="text-gray-500 hover:text-gray-600 font-medium flex items-center gap-1 cursor-hover">
+                <i class="fab fa-github"></i> Code
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden hover-lift scale-in stagger-3">
+          <div class="relative h-48 overflow-hidden cursor-hover">
+            <!-- TEMPAT SCREENSHOT PROJECT 3 -->
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop&auto=format&q=80" alt="Analytics Dashboard" class="w-full h-full object-cover">
+            <div class="project-overlay">
+              <div class="text-white">
+                <h3 class="text-xl font-bold mb-2">Analytics Dashboard</h3>
+                <p class="text-sm mb-3">Real-time data visualization dashboard</p>
+                <div class="flex gap-2 flex-wrap mb-4">
+                  <span class="text-xs bg-white/20 backdrop-blur-sm px-2 py-1 rounded">React</span>
+                  <span class="text-xs bg-white/20 backdrop-blur-sm px-2 py-1 rounded">Chart.js</span>
+                  <span class="text-xs bg-white/20 backdrop-blur-sm px-2 py-1 rounded">D3.js</span>
+                </div>
+                <div class="flex gap-2">
+                  <a href="#" class="px-3 py-1 bg-white/20 backdrop-blur-sm rounded text-xs hover:bg-white/30 transition-colors">
+                    <i class="fas fa-eye"></i> Demo
+                  </a>
+                  <a href="#" class="px-3 py-1 bg-white/20 backdrop-blur-sm rounded text-xs hover:bg-white/30 transition-colors">
+                    <i class="fab fa-github"></i> Code
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-gray-800 mb-2">Analytics Dashboard</h3>
+            <p class="text-gray-600 mb-4">
+              Interactive dashboard with real-time data visualization, charts, and comprehensive analytics.
+            </p>
+            <div class="flex gap-4">
+              <a href="#" class="text-blue-500 hover:text-blue-600 font-medium flex items-center gap-1 cursor-hover">
+                <i class="fas fa-eye"></i> Demo
+              </a>
+              <a href="#" class="text-gray-500 hover:text-gray-600 font-medium flex items-center gap-1 cursor-hover">
+                <i class="fab fa-github"></i> Code
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden hover-lift scale-in stagger-4">
+          <div class="relative h-48 overflow-hidden cursor-hover">
+            <!-- TEMPAT SCREENSHOT PROJECT 4 -->
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&h=400&fit=crop&auto=format&q=80" alt="Blog Platform" class="w-full h-full object-cover">
+            <div class="project-overlay">
+              <div class="text-white">
+                <h3 class="text-xl font-bold mb-2">Blog Platform</h3>
+                <p class="text-sm mb-3">Modern blog with CMS functionality</p>
+                <div class="flex gap-2 flex-wrap mb-4">
+                  <span class="text-xs bg-white/20 backdrop-blur-sm px-2 py-1 rounded">Next.js</span>
+                  <span class="text-xs bg-white/20 backdrop-blur-sm px-2 py-1 rounded">Strapi</span>
+                  <span class="text-xs bg-white/20 backdrop-blur-sm px-2 py-1 rounded">GraphQL</span>
+                </div>
+                <div class="flex gap-2">
+                  <a href="#" class="px-3 py-1 bg-white/20 backdrop-blur-sm rounded text-xs hover:bg-white/30 transition-colors">
+                    <i class="fas fa-eye"></i> Demo
+                  </a>
+                  <a href="#" class="px-3 py-1 bg-white/20 backdrop-blur-sm rounded text-xs hover:bg-white/30 transition-colors">
+                    <i class="fab fa-github"></i> Code
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-gray-800 mb-2">Blog Platform</h3>
+            <p class="text-gray-600 mb-4">
+              Feature-rich blog platform with content management system, SEO optimization, and social sharing.
+            </p>
+            <div class="flex gap-4">
+              <a href="#" class="text-blue-500 hover:text-blue-600 font-medium flex items-center gap-1 cursor-hover">
+                <i class="fas fa-eye"></i> Demo
+              </a>
+              <a href="#" class="text-gray-500 hover:text-gray-600 font-medium flex items-center gap-1 cursor-hover">
+                <i class="fab fa-github"></i> Code
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden hover-lift scale-in stagger-5">
+          <div class="relative h-48 overflow-hidden cursor-hover">
+            <!-- TEMPAT SCREENSHOT PROJECT 5 -->
+            <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=600&h=400&fit=crop&auto=format&q=80" alt="Weather App" class="w-full h-full object-cover">
+            <div class="project-overlay">
+              <div class="text-white">
+                <h3 class="text-xl font-bold mb-2">Weather App</h3>
+                <p class="text-sm mb-3">Beautiful weather forecast application</p>
+                <div class="flex gap-2 flex-wrap mb-4">
+                  <span class="text-xs bg-white/20 backdrop-blur-sm px-2 py-1 rounded">JavaScript</span>
+                  <span class="text-xs bg-white/20 backdrop-blur-sm px-2 py-1 rounded">API</span>
+                  <span class="text-xs bg-white/20 backdrop-blur-sm px-2 py-1 rounded">CSS3</span>
+                </div>
+                <div class="flex gap-2">
+                  <a href="#" class="px-3 py-1 bg-white/20 backdrop-blur-sm rounded text-xs hover:bg-white/30 transition-colors">
+                    <i class="fas fa-eye"></i> Demo
+                  </a>
+                  <a href="#" class="px-3 py-1 bg-white/20 backdrop-blur-sm rounded text-xs hover:bg-white/30 transition-colors">
+                    <i class="fab fa-github"></i> Code
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-gray-800 mb-2">Weather App</h3>
+            <p class="text-gray-600 mb-4">
+              Beautiful weather application with location detection, 5-day forecast, and interactive maps.
+            </p>
+            <div class="flex gap-4">
+              <a href="#" class="text-blue-500 hover:text-blue-600 font-medium flex items-center gap-1 cursor-hover">
+                <i class="fas fa-eye"></i> Demo
+              </a>
+              <a href="#" class="text-gray-500 hover:text-gray-600 font-medium flex items-center gap-1 cursor-hover">
+                <i class="fab fa-github"></i> Code
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 6 -->
+        <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden hover-lift scale-in stagger-6">
+          <div class="relative h-48 overflow-hidden cursor-hover">
+            <!-- TEMPAT SCREENSHOT PROJECT 6 -->
+            <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&h=400&fit=crop&auto=format&q=80" alt="Portfolio Website" class="w-full h-full object-cover">
+            <div class="project-overlay">
+              <div class="text-white">
+                <h3 class="text-xl font-bold mb-2">Portfolio Website</h3>
+                <p class="text-sm mb-3">Responsive portfolio with animations</p>
+                <div class="flex gap-2 flex-wrap mb-4">
+                  <span class="text-xs bg-white/20 backdrop-blur-sm px-2 py-1 rounded">HTML</span>
+                  <span class="text-xs bg-white/20 backdrop-blur-sm px-2 py-1 rounded">CSS</span>
+                  <span class="text-xs bg-white/20 backdrop-blur-sm px-2 py-1 rounded">JavaScript</span>
+                </div>
+                <div class="flex gap-2">
+                  <a href="#" class="px-3 py-1 bg-white/20 backdrop-blur-sm rounded text-xs hover:bg-white/30 transition-colors">
+                    <i class="fas fa-eye"></i> Demo
+                  </a>
+                  <a href="#" class="px-3 py-1 bg-white/20 backdrop-blur-sm rounded text-xs hover:bg-white/30 transition-colors">
+                    <i class="fab fa-github"></i> Code
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-gray-800 mb-2">Portfolio Website</h3>
+            <p class="text-gray-600 mb-4">
+              Modern portfolio website with smooth animations, responsive design, and interactive elements.
+            </p>
+            <div class="flex gap-4">
+              <a href="#" class="text-blue-500 hover:text-blue-600 font-medium flex items-center gap-1 cursor-hover">
+                <i class="fas fa-eye"></i> Demo
+              </a>
+              <a href="#" class="text-gray-500 hover:text-gray-600 font-medium flex items-center gap-1 cursor-hover">
+                <i class="fab fa-github"></i> Code
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certificates Section -->
+  <section id="certificates" class="py-20 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl sm:text-4xl font-bold text-center mb-4 slide-in-top">
+        My <span class="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">Certificates</span>
+      </h2>
+      <p class="text-center text-gray-600 mb-16 max-w-2xl mx-auto slide-in-top stagger-2">
+        Professional certifications and achievements that showcase my expertise and commitment to continuous learning.
+      </p>
+
+      <div class="certificate-gallery">
+        <!-- Certificate 1 -->
+        <div class="certificate-item scale-in stagger-1" data-certificate="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=600&fit=crop&auto=format&q=80">
+          <div class="aspect-w-4 aspect-h-3 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 cursor-hover">
+            <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&h=300&fit=crop&auto=format&q=80" alt="JavaScript Certification" class="w-full h-48 object-cover rounded-lg mb-4">
+            <div class="flex items-center justify-between">
+              <div>
+                <h3 class="text-lg font-semibold text-gray-800 mb-1">JavaScript Certification</h3>
+                <p class="text-sm text-gray-600">Coursera • 2024</p>
+              </div>
+              <i class="fas fa-certificate text-2xl text-yellow-500"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Certificate 2 -->
+        <div class="certificate-item scale-in stagger-2" data-certificate="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop&auto=format&q=80">
+          <div class="aspect-w-4 aspect-h-3 bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6 cursor-hover">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop&auto=format&q=80" alt="React.js Certification" class="w-full h-48 object-cover rounded-lg mb-4">
+            <div class="flex items-center justify-between">
+              <div>
+                <h3 class="text-lg font-semibold text-gray-800 mb-1">React.js Certification</h3>
+                <p class="text-sm text-gray-600">Meta • 2024</p>
+              </div>
+              <i class="fas fa-certificate text-2xl text-blue-500"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Certificate 3 -->
+        <div class="certificate-item scale-in stagger-3" data-certificate="https://images.unsplash.com/photo-1553028826-f4804a6dba3b?w=800&h=600&fit=crop&auto=format&q=80">
+          <div class="aspect-w-4 aspect-h-3 bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 cursor-hover">
+            <img src="https://images.unsplash.com/photo-1553028826-f4804a6dba3b?w=400&h=300&fit=crop&auto=format&q=80" alt="UI/UX Design Certification" class="w-full h-48 object-cover rounded-lg mb-4">
+            <div class="flex items-center justify-between">
+              <div>
+                <h3 class="text-lg font-semibold text-gray-800 mb-1">UI/UX Design</h3>
+                <p class="text-sm text-gray-600">Google • 2023</p>
+              </div>
+              <i class="fas fa-certificate text-2xl text-green-500"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Certificate 4 -->
+        <div class="certificate-item scale-in stagger-4" data-certificate="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=600&fit=crop&auto=format&q=80">
+          <div class="aspect-w-4 aspect-h-3 bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-6 cursor-hover">
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop&auto=format&q=80" alt="Web Development Bootcamp" class="w-full h-48 object-cover rounded-lg mb-4">
+            <div class="flex items-center justify-between">
+              <div>
+                <h3 class="text-lg font-semibold text-gray-800 mb-1">Full Stack Web Development</h3>
+                <p class="text-sm text-gray-600">Udemy • 2023</p>
+              </div>
+              <i class="fas fa-certificate text-2xl text-orange-500"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Certificate 5 -->
+        <div class="certificate-item scale-in stagger-5" data-certificate="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&auto=format&q=80">
+          <div class="aspect-w-4 aspect-h-3 bg-gradient-to-br from-pink-50 to-pink-100 rounded-xl p-6 cursor-hover">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop&auto=format&q=80" alt="CSS3 Advanced" class="w-full h-48 object-cover rounded-lg mb-4">
+            <div class="flex items-center justify-between">
+              <div>
+                <h3 class="text-lg font-semibold text-gray-800 mb-1">Advanced CSS3</h3>
+                <p class="text-sm text-gray-600">freeCodeCamp • 2022</p>
+              </div>
+              <i class="fas fa-certificate text-2xl text-pink-500"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Certificate 6 -->
+        <div class="certificate-item scale-in stagger-6" data-certificate="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&h=600&fit=crop&auto=format&q=80">
+          <div class="aspect-w-4 aspect-h-3 bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-xl p-6 cursor-hover">
+            <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400&h=300&fit=crop&auto=format&q=80" alt="Responsive Web Design" class="w-full h-48 object-cover rounded-lg mb-4">
+            <div class="flex items-center justify-between">
+              <div>
+                <h3 class="text-lg font-semibold text-gray-800 mb-1">Responsive Web Design</h3>
+                <p class="text-sm text-gray-600">freeCodeCamp • 2022</p>
+              </div>
+              <i class="fas fa-certificate text-2xl text-indigo-500"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-content">
+      <span class="lightbox-close cursor-hover" id="lightbox-close">&times;</span>
+      <img src="" alt="Certificate" id="lightbox-image">
+    </div>
+  </div>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl sm:text-4xl font-bold text-center mb-4 slide-in-top">
+        Get In <span class="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">Touch</span>
+      </h2>
+      <p class="text-center text-gray-600 mb-16 max-w-2xl mx-auto slide-in-top stagger-2">
+        Ready to bring your ideas to life? Let's work together to create something amazing!
+      </p>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <!-- Contact Info -->
+        <div class="slide-in-left">
+          <div class="mb-8">
+            <h3 class="text-2xl font-bold mb-6 text-gray-800">Let's Connect</h3>
+            <div class="space-y-4">
+              <div class="flex items-center gap-4 cursor-hover">
+                <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white">
+                  <i class="fas fa-envelope"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-800">Email</h4>
+                  <p class="text-gray-600">luthfi.rafananda@email.com</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-4 cursor-hover">
+                <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-600 rounded-full flex items-center justify-center text-white">
+                  <i class="fas fa-phone"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-800">Phone</h4>
+                  <p class="text-gray-600">+62 812-3456-7890</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-4 cursor-hover">
+                <div class="w-12 h-12 bg-gradient-to-r from-red-500 to-pink-600 rounded-full flex items-center justify-center text-white">
+                  <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-800">Location</h4>
+                  <p class="text-gray-600">Cianjur, West Java, Indonesia</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Social Links -->
+          <div class="mb-8">
+            <h4 class="text-xl font-semibold mb-4 text-gray-800">Follow Me</h4>
+            <div class="flex gap-4">
+              <a href="https://github.com/luthfirafananda" target="_blank" class="w-12 h-12 bg-gray-800 hover:bg-gray-700 text-white rounded-full flex items-center justify-center transition-colors cursor-hover">
+                <i class="fab fa-github"></i>
+              </a>
+              <a href="https://linkedin.com/in/luthfirafananda" target="_blank" class="w-12 h-12 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center transition-colors cursor-hover">
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a href="https://instagram.com/luthfirafananda" target="_blank" class="w-12 h-12 bg-pink-600 hover:bg-pink-700 text-white rounded-full flex items-center justify-center transition-colors cursor-hover">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="https://twitter.com/luthfirafananda" target="_blank" class="w-12 h-12 bg-blue-400 hover:bg-blue-500 text-white rounded-full flex items-center justify-center transition-colors cursor-hover">
+                <i class="fab fa-twitter"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Availability -->
+          <div class="bg-green-50 p-6 rounded-xl border border-green-200">
+            <div class="flex items-center gap-3 mb-2">
+              <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+              <h4 class="font-semibold text-green-800">Available for freelance</h4>
+            </div>
+            <p class="text-green-700 text-sm">I'm currently available for new projects and collaborations.</p>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="slide-in-right">
+          <form class="space-y-6" id="contact-form">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div>
+                <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Name</label>
+                <input type="text" id="name" name="name" required
+                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all cursor-hover"
+                       placeholder="Your Name">
+              </div>
+              <div>
+                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                <input type="email" id="email" name="email" required
+                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all cursor-hover"
+                       placeholder="your.email@example.com">
+              </div>
+            </div>
+            
+            <div>
+              <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">Subject</label>
+              <input type="text" id="subject" name="subject" required
+                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all cursor-hover"
+                     placeholder="Project Discussion">
+            </div>
+            
+            <div>
+              <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+              <textarea id="message" name="message" rows="5" required
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none cursor-hover"
+                        placeholder="Tell me about your project..."></textarea>
+            </div>
+            
+            <button type="submit" 
+                    class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold py-3 px-6 rounded-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 cursor-hover">
+              <i class="fas fa-paper-plane mr-2"></i>
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-12">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Logo & Description -->
+        <div>
+          <h3 class="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-4">
+            Luthfi Rafananda
+          </h3>
+          <p class="text-gray-300 leading-relaxed">
+            Passionate front-end developer creating beautiful and functional web experiences with modern technologies.
+          </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+          <ul class="space-y-2">
+            <li><a href="#home" class="text-gray-300 hover:text-blue-400 transition-colors cursor-hover">Home</a></li>
+            <li><a href="#about" class="text-gray-300 hover:text-blue-400 transition-colors cursor-hover">About</a></li>
+            <li><a href="#projects" class="text-gray-300 hover:text-blue-400 transition-colors cursor-hover">Projects</a></li>
+            <li><a href="#certificates" class="text-gray-300 hover:text-blue-400 transition-colors cursor-hover">Certificates</a></li>
+            <li><a href="#contact" class="text-gray-300 hover:text-blue-400 transition-colors cursor-hover">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
+          <div class="space-y-2 text-gray-300">
+            <p><i class="fas fa-envelope mr-2"></i> luthfi.rafananda@email.com</p>
+            <p><i class="fas fa-phone mr-2"></i> +62 812-3456-7890</p>
+            <p><i class="fas fa-map-marker-alt mr-2"></i> Cianjur, West Java</p>
+          </div>
+          <div class="flex gap-4 mt-4">
+            <a href="https://github.com/luthfirafananda" target="_blank" class="text-gray-300 hover:text-white transition-colors cursor-hover">
+              <i class="fab fa-github text-xl"></i>
+            </a>
+            <a href="https://linkedin.com/in/luthfirafananda" target="_blank" class="text-gray-300 hover:text-white transition-colors cursor-hover">
+              <i class="fab fa-linkedin text-xl"></i>
+            </a>
+            <a href="https://instagram.com/luthfirafananda" target="_blank" class="text-gray-300 hover:text-white transition-colors cursor-hover">
+              <i class="fab fa-instagram text-xl"></i>
+            </a>
+            <a href="https://twitter.com/luthfirafananda" target="_blank" class="text-gray-300 hover:text-white transition-colors cursor-hover">
+              <i class="fab fa-twitter text-xl"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+        <p class="text-gray-300">
+          &copy; 2024 Luthfi Rafananda. All rights reserved. Made with <span class="text-red-500">❤</span> and lots of ☕
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="fixed bottom-8 right-8 bg-gradient-to-r from-blue-500 to-purple-600 text-white p-3 rounded-full shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300 opacity-0 invisible cursor-hover">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- JavaScript -->
+  <script>
+    // Global Variables
+    let isLoading = true;
+    const cursor = document.getElementById('cursor');
+
+    const backToTopBtn = document.getElementById('back-to-top');
+    const navbar = document.getElementById('navbar');
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+    const closeMobileMenuBtn = document.getElementById('close-menu-btn');
+    const contactForm = document.getElementById('contact-form');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightbox-image');
+    const lightboxClose = document.getElementById('lightbox-close');
+
+
+    // Custom Cursor
+    if (window.innerWidth > 768) {
+      document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+      });
+
+      document.querySelectorAll('.cursor-hover').forEach(element => {
+        element.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+        element.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+      });
+    }
+
+    // Typing Effect
+    const typingTexts = [
+      'Front-End Developer',
+      'UI/UX Designer',
+      'Web Developer',
+      'Creative Coder'
+    ];
+    let textIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    const typingSpeed = 100;
+    const deletingSpeed = 50;
+    const pauseDelay = 2000;
+
+    function typeWriter() {
+      const typingElement = document.getElementById('typing-text');
+      const currentText = typingTexts[textIndex];
+
+      if (isDeleting) {
+        typingElement.textContent = currentText.substring(0, charIndex - 1);
+        charIndex--;
+      } else {
+        typingElement.textContent = currentText.substring(0, charIndex + 1);
+        charIndex++;
+      }
+
+      let speed = isDeleting ? deletingSpeed : typingSpeed;
+
+      if (!isDeleting && charIndex === currentText.length) {
+        speed = pauseDelay;
+        isDeleting = true;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        textIndex = (textIndex + 1) % typingTexts.length;
+      }
+
+      setTimeout(typeWriter, speed);
+    }
+
+
+    // Scroll Effects
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.pageYOffset;
+
+      // Navbar background
+      if (scrollTop > 100) {
+        navbar.classList.add('bg-white/95');
+        navbar.classList.remove('bg-white/90');
+      } else {
+        navbar.classList.add('bg-white/90');
+        navbar.classList.remove('bg-white/95');
+      }
+
+      // Back to top button
+      if (scrollTop > 500) {
+        backToTopBtn.classList.remove('opacity-0', 'invisible');
+        backToTopBtn.classList.add('opacity-100', 'visible');
+      } else {
+        backToTopBtn.classList.add('opacity-0', 'invisible');
+        backToTopBtn.classList.remove('opacity-100', 'visible');
+      }
+
+      // Parallax effect
+      const parallaxElements = document.querySelectorAll('.parallax');
+      parallaxElements.forEach(element => {
+        const speed = element.dataset.speed || 0.5;
+        const yPos = -(scrollTop * speed);
+        element.style.transform = `translate3d(0, ${yPos}px, 0)`;
+      });
+    });
+
+    // Back to top
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Mobile Menu
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.add('active');
+      mobileMenuOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+
+    function closeMobileMenu() {
+      mobileMenu.classList.remove('active');
+      mobileMenuOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    closeMobileMenuBtn.addEventListener('click', closeMobileMenu);
+    mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+
+    // Mobile menu links
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', closeMobileMenu);
+    });
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Counter Animation
+    function animateCounters() {
+      const counters = document.querySelectorAll('.counter');
+      
+      counters.forEach(counter => {
+        const target = parseInt(counter.getAttribute('data-target'));
+        const increment = target / 200;
+        let current = 0;
+
+        const updateCounter = () => {
+          if (current < target) {
+            current += increment;
+            counter.textContent = Math.ceil(current);
+            setTimeout(updateCounter, 10);
+          } else {
+            counter.textContent = target + '+';
+          }
+        };
+
+        updateCounter();
+      });
+    }
+
+    // Progress Bars Animation
+    function animateProgressBars() {
+      const progressFills = document.querySelectorAll('.progress-fill');
+      progressFills.forEach(fill => {
+        fill.classList.add('animate');
+      });
+    }
+
+    // Intersection Observer for animations
+    function initAnimations() {
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate');
+            
+            // Animate counters when about section is visible
+            if (entry.target.id === 'about') {
+              setTimeout(animateCounters, 500);
+              setTimeout(animateProgressBars, 800);
+            }
+          }
+        });
+      }, observerOptions);
+
+      // Observe all sections
+      document.querySelectorAll('section').forEach(section => {
+        observer.observe(section);
+      });
+
+      // Observe animation elements
+      document.querySelectorAll('[class*="slide-in"], [class*="scale-in"], [class*="rotate-in"]').forEach(element => {
+        observer.observe(element);
+      });
+    }
+
+    // Certificate Lightbox
+    document.querySelectorAll('.certificate-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const imageSrc = item.getAttribute('data-certificate');
+        lightboxImage.src = imageSrc;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    // Escape key to close lightbox and mobile menu
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeLightbox();
+        closeMobileMenu();
+      }
+    });
+
+    // Contact Form
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const formData = new FormData(contactForm);
+      const name = formData.get('name');
+      const email = formData.get('email');
+      const subject = formData.get('subject');
+      const message = formData.get('message');
+
+      // Simulate form submission
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerHTML;
+      
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
+      submitBtn.disabled = true;
+
+      setTimeout(() => {
+        submitBtn.innerHTML = '<i class="fas fa-check mr-2"></i> Message Sent!';
+        submitBtn.classList.remove('from-blue-500', 'to-purple-600');
+        submitBtn.classList.add('from-green-500', 'to-green-600');
+        
+        setTimeout(() => {
+          submitBtn.innerHTML = originalText;
+          submitBtn.disabled = false;
+          submitBtn.classList.remove('from-green-500', 'to-green-600');
+          submitBtn.classList.add('from-blue-500', 'to-purple-600');
+          contactForm.reset();
+        }, 2000);
+      }, 2000);
+    });
+
+    // Add glitch effect on hover to name
+    const glitchElement = document.querySelector('.glitch');
+    if (glitchElement) {
+      glitchElement.addEventListener('mouseenter', () => {
+        glitchElement.style.animation = 'none';
+        setTimeout(() => {
+          glitchElement.style.animation = '';
+        }, 10);
+      });
+    }
+
+    // Particle effect on hero section (simple version)
+    function createParticle() {
+      const particle = document.createElement('div');
+      particle.style.cssText = `
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 50%;
+        pointer-events: none;
+        animation: particleFloat 6s linear infinite;
+        left: ${Math.random() * 100}%;
+        animation-delay: ${Math.random() * 6}s;
+      `;
+
+      const heroSection = document.getElementById('home');
+      heroSection.appendChild(particle);
+
+      setTimeout(() => {
+        particle.remove();
+      }, 6000);
+    }
+
+    // Add particle animation keyframes
+    const particleStyle = document.createElement('style');
+    particleStyle.textContent = `
+      @keyframes particleFloat {
+        0% {
+          transform: translateY(100vh) translateX(0);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-100px) translateX(${Math.random() * 200 - 100}px);
+          opacity: 0;
+        }
+      }
+    `;
+    document.head.appendChild(particleStyle);
+
+    // Create particles periodically
+    setInterval(createParticle, 300);
+
+    // Form validation
+    const formInputs = document.querySelectorAll('#contact-form input, #contact-form textarea');
+    formInputs.forEach(input => {
+      input.addEventListener('blur', validateInput);
+      input.addEventListener('input', clearValidation);
+    });
+
+    function validateInput(e) {
+      const input = e.target;
+      const value = input.value.trim();
+      
+      clearValidation.call(input);
+      
+      if (!value) {
+        showError(input, 'This field is required');
+        return;
+      }
+      
+      if (input.type === 'email' && !isValidEmail(value)) {
+        showError(input, 'Please enter a valid email address');
+        return;
+      }
+      
+      showSuccess(input);
+    }
+
+    function clearValidation() {
+      this.classList.remove('border-red-500', 'border-green-500');
+      const errorMsg = this.parentNode.querySelector('.error-message');
+      const successIcon = this.parentNode.querySelector('.success-icon');
+      if (errorMsg) errorMsg.remove();
+      if (successIcon) successIcon.remove();
+    }
+
+    function showError(input, message) {
+      input.classList.add('border-red-500');
+      const errorMsg = document.createElement('p');
+      errorMsg.className = 'error-message text-red-500 text-sm mt-1';
+      errorMsg.textContent = message;
+      input.parentNode.appendChild(errorMsg);
+    }
+
+    function showSuccess(input) {
+      input.classList.add('border-green-500');
+      const successIcon = document.createElement('div');
+      successIcon.className = 'success-icon absolute right-3 top-1/2 transform -translate-y-1/2 text-green-500';
+      successIcon.innerHTML = '<i class="fas fa-check"></i>';
+      input.parentNode.style.position = 'relative';
+      input.parentNode.appendChild(successIcon);
+    }
+
+    function isValidEmail(email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    }
+
+    // Add loading states to external links
+    document.querySelectorAll('a[href^="http"]').forEach(link => {
+      link.addEventListener('click', function(e) {
+        if (this.target === '_blank') {
+          this.style.opacity = '0.7';
+          setTimeout(() => {
+            this.style.opacity = '1';
+          }, 300);
+        }
+      });
+    });
+
+    // Performance optimization - Intersection Observer for images
+    const imageObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          if (img.dataset.src) {
+            img.src = img.dataset.src;
+            img.removeAttribute('data-src');
+            imageObserver.unobserve(img);
+          }
+        }
+      });
+    });
+
+    // Lazy load images
+    document.querySelectorAll('img[data-src]').forEach(img => {
+      imageObserver.observe(img);
+    });
+
+    // Theme switcher (optional feature)
+    function initThemeToggle() {
+      const themeToggle = document.createElement('button');
+      themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+      themeToggle.className = 'fixed top-20 right-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full shadow-lg hover:shadow-xl transition-all duration-300 cursor-hover z-40 flex items-center justify-center text-gray-700 hover:text-blue-500';
+      themeToggle.style.display = 'none'; // Hidden by default, can be enabled
+      document.body.appendChild(themeToggle);
+
+      themeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        const icon = themeToggle.querySelector('i');
+        icon.className = document.body.classList.contains('dark-mode') 
+          ? 'fas fa-sun' 
+          : 'fas fa-moon';
+      });
+    }
+
+    // Smooth reveal animations for elements
+    function revealOnScroll() {
+      const reveals = document.querySelectorAll('.reveal');
+      reveals.forEach(reveal => {
+        const windowHeight = window.innerHeight;
+        const elementTop = reveal.getBoundingClientRect().top;
+        const elementVisible = 150;
+
+        if (elementTop < windowHeight - elementVisible) {
+          reveal.classList.add('active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', revealOnScroll);
+
+    // Add some extra interactive elements
+    function addInteractiveElements() {
+      // Add ripple effect to buttons
+      document.querySelectorAll('button, .btn-shine').forEach(button => {
+        button.addEventListener('click', function(e) {
+          const ripple = document.createElement('span');
+          const rect = this.getBoundingClientRect();
+          const size = Math.max(rect.width, rect.height);
+          const x = e.clientX - rect.left - size / 2;
+          const y = e.clientY - rect.top - size / 2;
+          
+          ripple.style.cssText = `
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            width: ${size}px;
+            height: ${size}px;
+            left: ${x}px;
+            top: ${y}px;
+          `;
+          
+          this.style.position = 'relative';
+          this.style.overflow = 'hidden';
+          this.appendChild(ripple);
+          
+          setTimeout(() => {
+            ripple.remove();
+          }, 600);
+        });
+      });
+
+      // Add ripple animation
+      const rippleStyle = document.createElement('style');
+      rippleStyle.textContent = `
+        @keyframes ripple {
+          to {
+            transform: scale(4);
+            opacity: 0;
+          }
+        }
+      `;
+      document.head.appendChild(rippleStyle);
+    }
+
+    // Initialize all interactive elements
+    setTimeout(() => {
+      addInteractiveElements();
+      // initThemeToggle(); // Uncomment to enable theme toggle
+    }, 1000);
+
+    // Preload critical images
+    function preloadImages() {
+      const criticalImages = [
+        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face&auto=format&q=80',
+        // Add other critical images here
+      ];
+
+      criticalImages.forEach(src => {
+        const img = new Image();
+        img.src = src;
+      });
+    }
+
+    preloadImages();
+
+    // Error handling for images
+    document.querySelectorAll('img').forEach(img => {
+      img.addEventListener('error', function() {
+        this.src = 'https://via.placeholder.com/400x300/3b82f6/ffffff?text=Image+Not+Found';
+        this.alt = 'Image not available';
+      });
+    });
+
+    // Add some easter eggs
+    let konamiCode = [];
+    const konamiSequence = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65]; // Up Up Down Down Left Right Left Right B A
+
+    document.addEventListener('keydown', (e) => {
+      konamiCode.push(e.keyCode);
+      if (konamiCode.length > konamiSequence.length) {
+        konamiCode.shift();
+      }
+      
+      if (JSON.stringify(konamiCode) === JSON.stringify(konamiSequence)) {
+        // Easter egg activated!
+        document.body.style.animation = 'rainbow 2s infinite';
+        setTimeout(() => {
+          document.body.style.animation = '';
+        }, 4000);
+      }
+    });
+
+    // Rainbow animation for easter egg
+    const rainbowStyle = document.createElement('style');
+    rainbowStyle.textContent = `
+      @keyframes rainbow {
+        0% { filter: hue-rotate(0deg); }
+        25% { filter: hue-rotate(90deg); }
+        50% { filter: hue-rotate(180deg); }
+        75% { filter: hue-rotate(270deg); }
+        100% { filter: hue-rotate(360deg); }
+      }
+    `;
+    document.head.appendChild(rainbowStyle);
+
+    // Analytics tracking (placeholder - replace with your analytics)
+    function trackEvent(eventName, eventData = {}) {
+      // Replace with your analytics tracking code
+      console.log('Event tracked:', eventName, eventData);
+      
+      // Example: Google Analytics 4
+      // gtag('event', eventName, eventData);
+      
+      // Example: Facebook Pixel
+      // fbq('track', eventName, eventData);
+    }
+
+    // Track important interactions
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', () => {
+        trackEvent('navigation_click', {
+          section: link.getAttribute('href').substring(1)
+        });
+      });
+    });
+
+    document.querySelectorAll('.project-card').forEach((card, index) => {
+      card.addEventListener('click', () => {
+        trackEvent('project_view', {
+          project_index: index,
+          project_name: card.querySelector('h3').textContent
+        });
+      });
+    });
+
+    contactForm.addEventListener('submit', () => {
+      trackEvent('contact_form_submit', {
+        form_type: 'main_contact'
+      });
+    });
+
+    // Final initialization
+    document.addEventListener('DOMContentLoaded', () => {
+      // Remove any flash of unstyled content
+      document.body.style.visibility = 'visible';
+    });
+
+    // Performance monitoring
+    window.addEventListener('load', () => {
+      // Log performance metrics
+      const perfData = performance.timing;
+      const loadTime = perfData.loadEventEnd - perfData.navigationStart;
+      
+      console.log('🚀 Portfolio loaded successfully!');
+      console.log('💼 Luthfi Rafananda - Front-End Developer');
+      console.log('📧 Contact: luthfi.rafananda@email.com');
+      console.log(`⚡ Load time: ${loadTime}ms`);
+      
+      // Track performance
+      trackEvent('page_load', {
+        load_time: loadTime,
+        user_agent: navigator.userAgent
+      });
+    });
+
+    // Handle offline/online status
+    function updateConnectionStatus() {
+      const status = navigator.onLine ? 'online' : 'offline';
+      if (!navigator.onLine) {
+        // Show offline message
+        const offlineMsg = document.createElement('div');
+        offlineMsg.id = 'offline-message';
+        offlineMsg.className = 'fixed top-0 left-0 w-full bg-red-500 text-white text-center py-2 z-50';
+        offlineMsg.textContent = 'You are currently offline. Some features may not work.';
+        document.body.appendChild(offlineMsg);
+      } else {
+        // Remove offline message
+        const offlineMsg = document.getElementById('offline-message');
+        if (offlineMsg) offlineMsg.remove();
+      }
+    }
+
+    window.addEventListener('online', updateConnectionStatus);
+    window.addEventListener('offline', updateConnectionStatus);
+
+    // Initialize connection status
+    updateConnectionStatus();
+
+    // Add some CSS for reveal animations
+    const revealStyles = document.createElement('style');
+    revealStyles.textContent = `
+      .reveal {
+        opacity: 0;
+        transform: translateY(50px);
+        transition: all 0.6s ease;
+      }
+      
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Additional mobile optimizations */
+      @media (max-width: 768px) {
+        .floating {
+          animation-duration: 2s;
+        }
+        
+        .blob {
+          animation-duration: 6s;
+        }
+        
+        .parallax {
+          transform: none !important;
+        }
+      }
+
+      /* Print styles */
+      @media print {
+        .fixed,
+        #mobile-menu,
+        #mobile-menu-overlay,
+        #back-to-top,
+        #cursor {
+          display: none !important;
+        }
+        
+        .animated-gradient {
+          background: #3b82f6 !important;
+          -webkit-print-color-adjust: exact;
+        }
+        
+        .bg-gradient-to-r {
+          background: #3b82f6 !important;
+          -webkit-print-color-adjust: exact;
+        }
+      }
+
+      /* High contrast mode support */
+      @media (prefers-contrast: high) {
+        .text-gray-600 {
+          color: #000 !important;
+        }
+        
+        .bg-gray-50 {
+          background: #fff !important;
+        }
+      }
+
+      /* Reduced motion support */
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+        
+        .floating,
+        .blob {
+          animation: none !important;
+        }
+      }
+
+      /* Focus styles for accessibility */
+      button:focus,
+      a:focus,
+      input:focus,
+      textarea:focus {
+        outline: 2px solid #3b82f6;
+        outline-offset: 2px;
+      }
+
+      /* Smooth scrolling fallback */
+      @supports not (scroll-behavior: smooth) {
+        html {
+          scroll-behavior: auto;
+        }
+      }
+    `;
+    document.head.appendChild(revealStyles);
+
+    // Initialize service worker for PWA capabilities (optional)
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        // Uncomment to enable PWA features
+        // navigator.serviceWorker.register('/sw.js')
+        //   .then(registration => console.log('SW registered'))
+        //   .catch(error => console.log('SW registration failed'));
+      });
+    }
+
+    // Memory cleanup
+    window.addEventListener('beforeunload', () => {
+      // Clean up any intervals or listeners
+      if (window.particleInterval) {
+        clearInterval(window.particleInterval);
+      }
+    });
+
+    // Add final touches
+    console.log('%c🎨 Portfolio Design by Luthfi Rafananda', 'color: #3b82f6; font-size: 16px; font-weight: bold;');
+    console.log('%c✨ Powered by HTML5, CSS3, and Vanilla JavaScript', 'color: #8b5cf6; font-size: 12px;');
+  </script>
+
+  <!-- Schema.org structured data for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Luthfi Rafananda",
+    "jobTitle": "Front-End Developer",
+    "description": "Passionate front-end developer creating beautiful and functional web experiences with modern technologies.",
+    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face&auto=format&q=80",
+    "email": "luthfi.rafananda@email.com",
+    "telephone": "+62-812-3456-7890",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Cianjur",
+      "addressRegion": "West Java",
+      "addressCountry": "Indonesia"
+    },
+    "sameAs": [
+      "https://github.com/luthfirafananda",
+      "https://linkedin.com/in/luthfirafananda",
+      "https://instagram.com/luthfirafananda",
+      "https://twitter.com/luthfirafananda"
+    ],
+    "knowsAbout": [
+      "HTML5",
+      "CSS3", 
+      "JavaScript",
+      "React.js",
+      "UI/UX Design",
+      "Responsive Web Design",
+      "Front-end Development"
+    ]
+  }
+  </script>
+  <script>
+  window.addEventListener("load", function() {
+    setTimeout(function(){
+      document.getElementById("").classList.add("hidden");
+    }, 500); // delay 0.5 detik
+  });
+</script>
+
+</body>
+</html>
